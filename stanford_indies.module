@@ -7,7 +7,7 @@
  * Implements hook_menu().
  */
 function stanford_indies_menu() {
-  $items['labs-centers-institutes-test'] = array(
+  $items['labs-centers-institutes'] = array(
     'title'            => 'Independent Laboratories, Centers, and Institutes',
     'page callback'    => 'stanford_indies_ilci_landing',
     //'page arguments'   => array(1),
