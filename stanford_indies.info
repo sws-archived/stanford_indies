@@ -1,0 +1,10 @@
+name = Stanford Indies
+description = Stanford Indies
+core = 7.x
+package = Stanford
+version = 7.x-1.0
+project = stanford_indies
+
+dependencies[] = views_isotope
+
+files[] = templates/ilci_landing.tpl.php

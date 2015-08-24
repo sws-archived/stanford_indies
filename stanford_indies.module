@@ -1,0 +1,55 @@
+<?php
+/**
+ * @file
+ * Code for the Stanford Indies landing page.
+ */
+/**
+ * Implements hook_menu().
+ */
+function stanford_indies_menu() {
+  $items['labs-centers-institutes-test'] = array(
+    'title'            => 'Independent Laboratories, Centers, and Institutes',
+    'page callback'    => 'stanford_indies_ilci_landing',
+    //'page arguments'   => array(1),
+    'access arguments'  => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+
+function stanford_indies_ilci_landing() {
+  
+  $view = views_get_view('ilci');
+  $view->set_display('default'); // select the view type
+  $view->pre_execute();
+  $view->execute(); //execute the view
+  $indies_grid = $view->render();
+  
+  $view = views_get_view('ilci_filter');
+  $view->set_display('default'); // select the view type
+  $view->pre_execute();
+  $view->execute(); //execute the view
+  $indies_filter = $view->render();
+  
+  //$view = views_get_view('ilci_sort');
+  //$view->set_display('block'); // select the view type
+  //$view->pre_execute();
+  //$view->execute(); //execute the view
+  //$indies_sort = $view->render();
+  
+  
+  //return theme('stanford_ilci_landing', array('indies_grid' => $indies_grid, 'indies_filter' => $indies_filter, 'indies_sort' => $indies_sort));
+  return theme('stanford_ilci_landing', array('indies_grid' => $indies_grid, 'indies_filter' => $indies_filter));
+}
+
+function stanford_indies_theme() {
+  return array(
+    'stanford_ilci_landing' => array(
+      'path' => drupal_get_path('module', 'stanford_indies') . '/templates',
+      'template' => 'ilci_landing',
+      'variables' => array('indies_grid' => NULL, 'indies_filter' => NULL, 'indies_sort' => NULL),
+    )
+  );
+}
