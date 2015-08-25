@@ -56,3 +56,13 @@ function stanford_indies_theme() {
   );
 }
 
+
+/**
+ * Implements hook_views_api().
+ */
+function stanford_indies_views_api() {
+  return array(
+    'api' => 2.0,
+    'template path' => drupal_get_path('module', 'stanford_indies') . '/views/theme',
+  );
+}

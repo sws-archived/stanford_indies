@@ -10,6 +10,7 @@
         'margin'     : '0',
         'padding'    : '10px',
         'box-shadow' : '0 0 0 10px #fff inset',
+        'height'     : '320px',
       });
       
       var mosaic = $('#isotope-container');
@@ -48,10 +49,10 @@
           tile
           .css({
             width:  100 / mosaicColumnsNew + '%',
-            height: 320,
+            //height: 320,
           });
           // Add our tile expander link.
-          tile.find('.views-field-title').append('<div class="tile-expander tile-more">Learn more</div>');
+          tile.find('.views-field-field-s-ilci-about').append('<div class="tile-expander tile-more">Learn more</div>');
          
         });
         
@@ -116,9 +117,9 @@
       mosaic
       .css('width', newWidth + 'px')
       .isotope({
-        cellsByRow: {
-          columnWidth: colWidth
-        },
+        //cellsByRow: {
+        //  columnWidth: colWidth
+        //},
         layoutComplete: onLayout()
       });
     }
