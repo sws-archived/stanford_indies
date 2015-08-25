@@ -21,6 +21,8 @@ function stanford_indies_menu() {
 
 function stanford_indies_ilci_landing() {
   
+  drupal_add_js(drupal_get_path('module', 'stanford_indies') .'/js/stanford_indies.js', 'file');
+  
   $view = views_get_view('ilci');
   $view->set_display('default'); // select the view type
   $view->pre_execute();
@@ -53,3 +55,4 @@ function stanford_indies_theme() {
     )
   );
 }
+
