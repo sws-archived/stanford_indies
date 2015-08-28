@@ -52,8 +52,11 @@
           });
           // Add our tile expander link.
           tile.append('<div class="tile-expander tile-more">Learn more</div>');
+          //move site element to end of container
           var site = $('div.views-field-field-s-ilci-site-1', $(this));
           site.appendTo(tile);
+          //add a close to the area of focus so we can hid it when tile is closed
+          tile.find('strong').parent().addClass('area-focus');
         });
         
         // Handle tile clicks.
