@@ -21,6 +21,25 @@ $handler->display->display_options['pager']['type'] = 'none';
 $handler->display->display_options['pager']['options']['offset'] = '0';
 $handler->display->display_options['style_plugin'] = 'isotope';
 $handler->display->display_options['row_plugin'] = 'fields';
+/* Field: Content: ILCI GUID */
+$handler->display->display_options['fields']['field_s_ilci_guid']['id'] = 'field_s_ilci_guid';
+$handler->display->display_options['fields']['field_s_ilci_guid']['table'] = 'field_data_field_s_ilci_guid';
+$handler->display->display_options['fields']['field_s_ilci_guid']['field'] = 'field_s_ilci_guid';
+$handler->display->display_options['fields']['field_s_ilci_guid']['label'] = '';
+$handler->display->display_options['fields']['field_s_ilci_guid']['exclude'] = TRUE;
+$handler->display->display_options['fields']['field_s_ilci_guid']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_s_ilci_guid']['type'] = 'text_plain';
+/* Field: Field: Image */
+$handler->display->display_options['fields']['field_s_image_image']['id'] = 'field_s_image_image';
+$handler->display->display_options['fields']['field_s_image_image']['table'] = 'field_data_field_s_image_image';
+$handler->display->display_options['fields']['field_s_image_image']['field'] = 'field_s_image_image';
+$handler->display->display_options['fields']['field_s_image_image']['label'] = '';
+$handler->display->display_options['fields']['field_s_image_image']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_s_image_image']['click_sort_column'] = 'fid';
+$handler->display->display_options['fields']['field_s_image_image']['settings'] = array(
+  'image_style' => '',
+  'image_link' => '',
+);
 /* Field: Content: Title */
 $handler->display->display_options['fields']['title']['id'] = 'title';
 $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -28,6 +47,37 @@ $handler->display->display_options['fields']['title']['field'] = 'title';
 $handler->display->display_options['fields']['title']['label'] = '';
 $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
 $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+/* Field: Content: Body */
+$handler->display->display_options['fields']['body']['id'] = 'body';
+$handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+$handler->display->display_options['fields']['body']['field'] = 'body';
+$handler->display->display_options['fields']['body']['label'] = '';
+$handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+/* Field: Content: Program */
+$handler->display->display_options['fields']['field_s_ilci_program']['id'] = 'field_s_ilci_program';
+$handler->display->display_options['fields']['field_s_ilci_program']['table'] = 'field_data_field_s_ilci_program';
+$handler->display->display_options['fields']['field_s_ilci_program']['field'] = 'field_s_ilci_program';
+$handler->display->display_options['fields']['field_s_ilci_program']['click_sort_column'] = 'url';
+$handler->display->display_options['fields']['field_s_ilci_program']['delta_offset'] = '0';
+/* Field: Content: Research */
+$handler->display->display_options['fields']['field_s_ilci_research']['id'] = 'field_s_ilci_research';
+$handler->display->display_options['fields']['field_s_ilci_research']['table'] = 'field_data_field_s_ilci_research';
+$handler->display->display_options['fields']['field_s_ilci_research']['field'] = 'field_s_ilci_research';
+$handler->display->display_options['fields']['field_s_ilci_research']['click_sort_column'] = 'url';
+$handler->display->display_options['fields']['field_s_ilci_research']['delta_offset'] = '0';
+/* Field: Content: About */
+$handler->display->display_options['fields']['field_s_ilci_about']['id'] = 'field_s_ilci_about';
+$handler->display->display_options['fields']['field_s_ilci_about']['table'] = 'field_data_field_s_ilci_about';
+$handler->display->display_options['fields']['field_s_ilci_about']['field'] = 'field_s_ilci_about';
+$handler->display->display_options['fields']['field_s_ilci_about']['click_sort_column'] = 'url';
+$handler->display->display_options['fields']['field_s_ilci_about']['delta_offset'] = '0';
+/* Field: Content: Site */
+$handler->display->display_options['fields']['field_s_ilci_site_1']['id'] = 'field_s_ilci_site_1';
+$handler->display->display_options['fields']['field_s_ilci_site_1']['table'] = 'field_data_field_s_ilci_site';
+$handler->display->display_options['fields']['field_s_ilci_site_1']['field'] = 'field_s_ilci_site';
+$handler->display->display_options['fields']['field_s_ilci_site_1']['label'] = '';
+$handler->display->display_options['fields']['field_s_ilci_site_1']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_s_ilci_site_1']['click_sort_column'] = 'url';
 /* Field: Content: Category */
 $handler->display->display_options['fields']['field_s_ilci_category']['id'] = 'field_s_ilci_category';
 $handler->display->display_options['fields']['field_s_ilci_category']['table'] = 'field_data_field_s_ilci_category';
@@ -57,4 +107,3 @@ $handler->display->display_options['filters']['type']['field'] = 'type';
 $handler->display->display_options['filters']['type']['value'] = array(
   'ilci' => 'ilci',
 );
-
