@@ -10,7 +10,6 @@
         'margin'     : '0',
         'padding'    : '10px',
         'box-shadow' : '0 0 0 10px #fff inset',
-        'height'     : '320px',
       });
       
       var mosaic = $('#isotope-container');
@@ -52,8 +51,9 @@
             //height: 320,
           });
           // Add our tile expander link.
-          tile.find('.views-field-field-s-ilci-about').append('<div class="tile-expander tile-more">Learn more</div>');
-         
+          tile.append('<div class="tile-expander tile-more">Learn more</div>');
+          var site = $('div.views-field-field-s-ilci-site-1', $(this));
+          site.appendTo(tile);
         });
         
         // Handle tile clicks.
@@ -138,7 +138,7 @@
   
         $('.tile-closed:not(.processing)')
         .css({
-          opacity: '.6'
+          opacity: '.4'
         });
   
         tile
