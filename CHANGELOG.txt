@@ -1,0 +1,5 @@
+Stanford Indies x.x-x.x, xxxx-xx-xx
+------------------------------------
+Stanford Indies 7.x-1.x, 2015-09-21
+--------------------------------------------
+- Initial Version 1 Release.
