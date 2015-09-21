@@ -3,7 +3,8 @@ description = Stanford Indies
 core = 7.x
 package = Stanford
 version = 7.x-1.0
-project = stanford_indies
+project = Stanford
+project status url = https://github.com/SU-SWS/stanford_indies
 
 dependencies[] = views_isotope
 
