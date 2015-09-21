@@ -5,4 +5,4 @@ Maintainer: [boznik](https://github.com/boznik)
 
 [Changelog.txt](CHANGELOG.txt)
 
-Glue module for indies isotope ilci landing page.
+Glue module for indies ilci landing page.
