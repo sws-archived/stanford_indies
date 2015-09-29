@@ -10,9 +10,8 @@ function stanford_indies_menu() {
   $items['labs-centers-institutes'] = array(
     'title'            => 'Independent Laboratories, Centers, and Institutes',
     'page callback'    => 'stanford_indies_ilci_landing',
-    //'page arguments'   => array(1),
     'access arguments'  => array('access content'),
-    'type' => MENU_CALLBACK,
+    'type' => MENU_NORMAL_ITEM,
   );
 
   return $items;
