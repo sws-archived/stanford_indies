@@ -211,6 +211,10 @@
   
         tile.find('.tile-expander').removeClass('tile-less').addClass('tile-more').html('Learn more');
       }
+      
+      $('.isotope-filters li a').click(function() {
+        onLayout();
+      });
 
       // Isotope layoutComplete callback.
       function onLayout() {
