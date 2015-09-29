@@ -235,6 +235,7 @@
           }
   
         }, 500);
+        mosaic.isotope('shuffle');
       }
   
       // Sets classes on tiles to determine whether they expand to the right or
