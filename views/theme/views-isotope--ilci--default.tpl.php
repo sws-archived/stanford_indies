@@ -78,7 +78,9 @@
       $guid = isset($view->result[$id]->field_field_s_ilci_guid[0]['raw']['value']) ? $view->result[$id]->field_field_s_ilci_guid[0]['raw']['value'] : '';
       ?>
       <div class="isotope-element <?php print $classlist; ?>" data-category="<?php print trim($classlist); ?>" data-id="<?php print trim($guid); ?>">
-        <?php print $row; ?>
+			  <div class="tile-content">
+          <?php print $row; ?>
+				</div>
       </div>
     <?php endforeach; ?>
     <?php
