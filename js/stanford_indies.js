@@ -48,7 +48,7 @@
           tile
           .css({
             width:  100 / mosaicColumnsNew + '%',
-            //height: 320,
+            height: 340 + 'px',
           });
           var content = $(this).find('.tile-content');
           // Add our tile expander link.
