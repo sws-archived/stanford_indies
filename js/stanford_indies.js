@@ -50,11 +50,12 @@
             width:  100 / mosaicColumnsNew + '%',
             //height: 320,
           });
+          var content = $(this).find('.tile-content');
           // Add our tile expander link.
-          tile.append('<div class="tile-expander tile-more">Learn more</div>');
+          content.append('<div class="tile-expander tile-more">Learn more</div>');
           //move site element to end of container
-          var site = $('div.views-field-field-s-ilci-site-1', $(this));
-          site.appendTo(tile);
+          var site = $('.views-field-field-s-ilci-site-1', $(this));
+          site.appendTo(content);
           //add a close to the area of focus so we can hid it when tile is closed
           tile.find('strong').parent().addClass('area-focus');
         });
