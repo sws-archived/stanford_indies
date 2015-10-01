@@ -214,6 +214,8 @@
       }
       
       $('.isotope-filters li a').click(function() {
+        var openTile = $('.tile-open');
+        openTile.find('.tile-less').click();
         onLayout();
       });
 
