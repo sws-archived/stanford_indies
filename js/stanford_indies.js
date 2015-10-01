@@ -215,10 +215,13 @@
       
       $('.isotope-filters li a').click(function() {
         var openTile = $('.tile-open');
-        openTile.find('.tile-less').click();
-        onLayout();
+        console.log(openTile);
+        openTile.find('.tile-less', $(this)).click();
+        setTimeout( function() {
+          onLayout();
+         }, 500);
       });
-
+      
       // Isotope layoutComplete callback.
       function onLayout() {
         // Allow a little time for things to settle down.
@@ -237,7 +240,9 @@
             reopenTile.removeClass('no-transition tile-reopen');
           }
         }, 500);
-        mosaic.isotope('shuffle');
+        if ($('#isotope-container').hasClass('isotope')) {
+          mosaic.isotope('shuffle');
+        }      
       }
   
       // Sets classes on tiles to determine whether they expand to the right or
