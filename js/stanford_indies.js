@@ -8,8 +8,8 @@
       .css({
         'box-sizing' : 'border-box',
         'margin'     : '0',
-        'padding'    : '10px',
-        'box-shadow' : '0 0 0 10px #fff inset',
+        //'padding'    : '10px',
+        //'box-shadow' : '0 0 0 10px #fff inset',
       });
       
       var mosaic = $('#isotope-container');
