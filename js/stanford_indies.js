@@ -92,30 +92,41 @@
         
       }
       
-      $(window).resize( function() {
-        if (mosaic.length) {
-          $('.tile-expander').css('display', 'block');
-          var windowSize = mosaic.parent().width();
-          //var windowSize = window.innerWidth;
-          var mosaicColumnsNew = 3;
-          switch (true) {
-            case windowSize > 480 && windowSize <= 767:
-              mosaicColumnsNew = 2;
-              break;
-            case windowSize <= 480:
-              mosaicColumnsNew = 1;
-              //$('.tile-expander').css('display', 'none');
-              break;
-            default:
-              mosaicColumnsNew = 3;
-          }
-          var colWidth = (Math.ceil(windowSize / mosaicColumnsNew));
-          var newSize = (colWidth * mosaicColumnsNew);
-          mosaic.css('width', newSize + 'px');
-          var tile = $('.isotope-element');
-          tile.css('width', colWidth + 'px');
+      // Window resizing finished.
+      function doneResizing() {
+        // Close any open tiles and set them to reopen.
+        var openTile = $('.tile-open');
+  
+        if (openTile.length) {
+          tileContract(openTile, mosaic, 0);
+          openTile.addClass('no-transition tile-reopen');
         }
-      });
+  
+        // Figure out if we need 2 or 3 columns.
+        mosaicColumnsNew = ($(window).width() > mosaicColBreak) ? 3 : 2;
+  
+        // Determine new column width.
+        colWidth = Math.floor(mosaic.parent().width() / mosaicColumnsNew);
+        // New width of the container should be those, multiplied, plus a couple pixels for a fudge factor.
+        newWidth = Math.ceil(colWidth * mosaicColumnsNew);
+  
+        // Resize the tiles.
+        $('.isotope-element').each( function() {
+          $(this).css({
+            width: 100 / mosaicColumnsNew + '%'
+          });
+        });
+  
+        // Update the mosaic.
+        mosaic
+        .css('width', newWidth + 'px')
+        .isotope({
+          //cellsByRow: {
+          //  columnWidth: colWidth
+          //},
+          layoutComplete: onLayout()
+        });
+      }
 
       // Handle tile expansion.
       function tileExpand(tile, mosaic, transition) {
