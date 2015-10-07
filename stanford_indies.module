@@ -20,6 +20,7 @@ function stanford_indies_menu() {
 
 function stanford_indies_ilci_landing() {
   
+  drupal_add_js(drupal_get_path('module', 'stanford_indies') .'/js/imagesloaded.pkgd.min.js', 'file');
   drupal_add_js(drupal_get_path('module', 'stanford_indies') .'/js/stanford_indies.js', 'file');
   
   $view = views_get_view('ilci');

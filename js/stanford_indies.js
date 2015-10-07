@@ -8,29 +8,27 @@
       .css({
         'box-sizing' : 'border-box',
         'margin'     : '0',
-        'padding'    : '10px',
-        'box-shadow' : '0 0 0 10px #fff inset',
       });
       
       var mosaic = $('#isotope-container');
+      mosaic.css('min-height', '500px');
+      mosaic.isotope.layoutComplete = onLayout();
       
       if (mosaic.length) {
-  
-        var smartphone = 340,
-            tablito = 480,
-            tablet = 700,
-            desktop = 980,
-            mosaicColBreak = tablito,
-            mosaicHeight = mosaic.height(),
-            mosaicColumnsNew = ($(window).width() > mosaicColBreak) ? 3 : 2,
-            colWidth = (Math.ceil(mosaic.parent().width() / mosaicColumnsNew)),
-            newWidth = (colWidth * mosaicColumnsNew),
-            expandedCols = 2,
-            resizeTimer = '';
-  
+        var expandedCols = 2;
+        var originalWindowSize = $('#isotope-container').parent().width();
+        switch (true) {
+          case originalWindowSize <= 767:
+            mosaicColumnsNew = 2;
+            break;
+          case originalWindowSize > 767:
+            mosaicColumnsNew = 3;
+            break;
+        }
+
+        var colWidth = (Math.ceil($('#isotope-container').width() / mosaicColumnsNew));
+        var newWidth = (colWidth * mosaicColumnsNew);   
         mosaic.css('width', newWidth + 'px');
-        
-        mosaic.isotope.layoutComplete = onLayout();
         
         var map = {};
         // Process tiles.
@@ -47,14 +45,15 @@
           // Set tile width.
           tile
           .css({
-            width:  100 / mosaicColumnsNew + '%',
-            //height: 320,
-          });
+            width:  (100 / mosaicColumnsNew) + '%',
+            //height: 340 + 'px',
+          });     
+          var content = $(this).find('.tile-content');
           // Add our tile expander link.
-          tile.append('<div class="tile-expander tile-more">Learn more</div>');
+          content.append('<div class="tile-expander tile-more">Learn more</div>');
           //move site element to end of container
-          var site = $('div.views-field-field-s-ilci-site-1', $(this));
-          site.appendTo(tile);
+          var site = $('.views-field-field-s-ilci-site-1', $(this));
+          site.appendTo(content);
           //add a close to the area of focus so we can hid it when tile is closed
           tile.find('strong').parent().addClass('area-focus');
         });
@@ -91,41 +90,32 @@
         
       }
       
-    // Window resizing finished.
-    function doneResizing() {
-      // Close any open tiles and set them to reopen.
-      var openTile = $('.tile-open');
+      $(window).resize( function() {
+        if (mosaic.length) {
+          var windowSize = $(window).width();
+          switch (true) {
+            case windowSize <= 767:
+              mosaicColumnsNew = 2;
+              break;
+            case windowSize > 767:
+                mosaicColumnsNew = 3;
+                break;
+          }
+          var colWidth = (Math.ceil(mosaic.parent().width() / mosaicColumnsNew));
+          var newWidth = colWidth * mosaicColumnsNew;
+          mosaic.css('width', newWidth + 'px');
 
-      if (openTile.length) {
-        tileContract(openTile, mosaic, 0);
-        openTile.addClass('no-transition tile-reopen');
-      }
-
-      // Figure out if we need 2 or 3 columns.
-      mosaicColumnsNew = ($(window).width() > mosaicColBreak) ? 3 : 2;
-
-      // Determine new column width.
-      colWidth = Math.floor(mosaic.parent().width() / mosaicColumnsNew);
-      // New width of the container should be those, multiplied, plus a couple pixels for a fudge factor.
-      newWidth = Math.ceil(colWidth * mosaicColumnsNew);
-
-      // Resize the tiles.
-      $('.isotope-element').each( function() {
-        $(this).css({
-          width: 100 / mosaicColumnsNew + '%'
-        });
+          $('.isotope-element').each( function() {
+            var tile = $(this);
+            // Set tile width.
+            tile
+            .css({
+              'width':  (100 / mosaicColumnsNew) + '%',
+            });
+          });
+          onLayout();
+        }
       });
-
-      // Update the mosaic.
-      mosaic
-      .css('width', newWidth + 'px')
-      .isotope({
-        //cellsByRow: {
-        //  columnWidth: colWidth
-        //},
-        layoutComplete: onLayout()
-      });
-    }
 
       // Handle tile expansion.
       function tileExpand(tile, mosaic, transition) {
@@ -213,9 +203,12 @@
       }
       
       $('.isotope-filters li a').click(function() {
+        var openTile = $('.tile-open');
+        openTile.find('.tile-less', $(this)).click();
         onLayout();
+        mosaic.isotope('shuffle');
       });
-
+      
       // Isotope layoutComplete callback.
       function onLayout() {
         // Allow a little time for things to settle down.
@@ -234,7 +227,6 @@
             reopenTile.removeClass('no-transition tile-reopen');
           }
         }, 500);
-        mosaic.isotope('shuffle');
       }
   
       // Sets classes on tiles to determine whether they expand to the right or
@@ -247,6 +239,7 @@
               tileWidth = Math.floor(tile.width()),
               expandedWidth = tileWidth * 2,
               tilePosition = tile.position(),
+              dataId = $(this).attr('data-id'),
               tileLeft = Math.floor(tilePosition.left);
   
           tile.addClass('expand-right').removeClass('expand-left');
