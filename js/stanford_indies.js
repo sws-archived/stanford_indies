@@ -45,7 +45,7 @@
           // Set tile width.
           tile
           .css({
-            width:  (100 / mosaicColumnsNew) + '%',
+            'width':  ((100 / mosaicColumnsNew) -2) + '%',
             //height: 340 + 'px',
           });     
           var content = $(this).find('.tile-content');
