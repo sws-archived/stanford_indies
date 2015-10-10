@@ -90,31 +90,53 @@
         
       }
       
-      $(window).resize( function() {
-        if (mosaic.length) {
-          var windowSize = $(window).width();
-          switch (true) {
-            case windowSize <= 767:
-              mosaicColumnsNew = 2;
+      var getColumns = function() {
+        var windowSize = $(window).width();
+        switch (true) {
+          case windowSize <= 767:
+            mosaicColumnsNew = 2;
+            break;
+          case windowSize > 767:
+              mosaicColumnsNew = 3;
               break;
-            case windowSize > 767:
-                mosaicColumnsNew = 3;
-                break;
-          }
+        }
+        return mosaicColumnsNew;
+      }
+      
+      var resetTileSize = function() {
+        if (mosaic.hasClass('isotope')) {
+          var mosaicColumnsNew = getColumns();
           var colWidth = (Math.ceil(mosaic.parent().width() / mosaicColumnsNew));
           var newWidth = colWidth * mosaicColumnsNew;
           mosaic.css('width', newWidth + 'px');
-
+        
           $('.isotope-element').each( function() {
             var tile = $(this);
-            // Set tile width.
+            //Set tile width.
             tile
             .css({
-              'width':  (100 / mosaicColumnsNew) + '%',
+              'width':  ((100 / mosaicColumnsNew) -2) + '%',
             });
           });
           onLayout();
+          mosaic.isotope('shuffle');
         }
+      };
+      
+      $(window).resize( function() {
+         resetTileSize();
+      });
+      
+      $(window).smartresize(function(){
+        resetTileSize();
+        var mosaicColumnsNew = getColumns();
+        mosaic.isotope({
+          // update columnWidth to a percentage of container width
+          masonry: {
+              //columnWidth: mosaic.width() / mosaicColumnsNew,
+              gutterWidth: 10,
+            }
+        });
       });
 
       // Handle tile expansion.
@@ -181,7 +203,7 @@
         .removeClass('tile-open')
         .addClass('tile-closed')
         .animate({
-          'width': 100 / mosaicColumnsNew + '%'
+          'width': ((100 / mosaicColumnsNew) -2) + '%'
         }, transition, function() {
           tile.removeClass('processing');
         });
@@ -205,6 +227,7 @@
       $('.isotope-filters li a').click(function() {
         var openTile = $('.tile-open');
         openTile.find('.tile-less', $(this)).click();
+        resetTileSize();
         onLayout();
         mosaic.isotope('shuffle');
       });
